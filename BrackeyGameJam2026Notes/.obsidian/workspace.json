@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Game Notes/Dirty Napkin.md",
+                "file": "GDD/Story.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Dirty Napkin"
+              "title": "Story"
             }
           }
         ]
@@ -188,9 +188,16 @@
       "bases:Create new base": false
     }
   },
-  "active": "67b82725408c7c0f",
+  "active": "f0270f8dd86907d8",
   "lastOpenFiles": [
+    "GDD/NPCs",
+    "GDD/Features",
+    "GDD/Features.md",
+    "GDD/Story.md",
+    "GDD/Core Gameplay.md",
     "Art/Art direction notes.md",
+    "GDD/CORE GDD.md",
+    "GDD",
     "Game Notes/Dirty Napkin.md",
     "Game Notes/Game flow chart.canvas",
     "Game Notes",
