@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "61a871e17b21b132",
+        "id": "60086b93941ce943",
         "type": "tabs",
         "children": [
           {
-            "id": "9efe289a0dd3768e",
+            "id": "67b82725408c7c0f",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -188,13 +188,16 @@
       "bases:Create new base": false
     }
   },
-  "active": "9efe289a0dd3768e",
+  "active": "67b82725408c7c0f",
   "lastOpenFiles": [
+    "Image Dump/Pasted image 20260823131945.png",
+    "GDD/Core Gameplay.md",
+    "GDD/Story.md",
+    "Image Dump",
+    "Untitled.md",
     "Art/Art direction notes.md",
     "Game Notes/Dirty Napkin.md",
     "Game Notes/Game flow chart.canvas",
-    "GDD/Core Gameplay.md",
-    "GDD/Story.md",
     "GDD/NPCs",
     "GDD/Features",
     "GDD/Features.md",
