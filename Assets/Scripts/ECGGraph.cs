@@ -5,7 +5,7 @@ public class ECGGraph : MaskableGraphic
 {
     [Header("Display")]
     [SerializeField] private float _scrollSpeed = 100f;
-    [SerializeField] private float _amplitude = 40f;
+    [SerializeField, Range(0f, 1f)] private float _amplitude = 0.6f;
     [SerializeField] private float _lineThickness = 2f;
     [SerializeField] private int _samples = 500;
 
@@ -139,13 +139,16 @@ public class ECGGraph : MaskableGraphic
 
         float xStep = width / (_samples - 1);
 
+        float height = rectTransform.rect.height;
+        float amplitude = height * (_amplitude / 2);
+
         for (int i = 0; i < _samples - 1; i++) 
         {
             float x1 = -width / 2f + i * xStep;
             float x2 = -width / 2f + (i + 1) * xStep;
 
-            float y1 = _values[i] * _amplitude;
-            float y2 = _values[i + 1] * _amplitude;
+            float y1 = _values[i] * amplitude;
+            float y2 = _values[i + 1] * amplitude;
 
             Vector2 p1 = new Vector2(x1, y1);
             Vector2 p2 = new Vector2(x2, y2);

@@ -417,7 +417,7 @@ MonoBehaviour:
   _scrollSpeed: 80
   _amplitude: 40
   _lineThickness: 2
-  _samples: 500
+  _samples: 1200
   _bpm: 75
 --- !u!222 &662717569
 CanvasRenderer:
