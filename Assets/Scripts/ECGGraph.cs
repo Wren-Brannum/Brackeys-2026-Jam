@@ -17,6 +17,11 @@ public class ECGGraph : MaskableGraphic
     private float _samplePosition;
     private float _heartbeatTime;
 
+    // Variation
+    private float _currentRWaveHeight = 1f;
+    private float _currentTWaveHeight = 0.3f;
+    private float _currentPWaveHeight = 0.2f;
+
     float _heartbeatDuration => 60f / _bpm;
 
     protected override void Awake()
@@ -65,6 +70,7 @@ public class ECGGraph : MaskableGraphic
             if (_heartbeatTime >= _heartbeatDuration)
             {
                 _heartbeatTime -= _heartbeatDuration;
+                CreateHeartBeatVariation();
             }
         }
 
@@ -80,7 +86,7 @@ public class ECGGraph : MaskableGraphic
         {
             float t = (normalized - 0.20f) / 0.07f;
 
-            return Mathf.Sin(t * Mathf.PI) * 0.2f;
+            return Mathf.Sin(t * Mathf.PI) * _currentPWaveHeight;
         }
 
         // Q wave
@@ -96,7 +102,7 @@ public class ECGGraph : MaskableGraphic
         {
             float t = (normalized - 0.35f) / 0.03f;
 
-            return Mathf.Lerp(-0.25f, 1f, t);
+            return Mathf.Lerp(-0.25f, _currentRWaveHeight, t);
         }
 
         // S wave
@@ -104,7 +110,7 @@ public class ECGGraph : MaskableGraphic
         {
             float t = (normalized - 0.38f) / 0.04f;
 
-            return Mathf.Lerp(1f, -0.35f, t);
+            return Mathf.Lerp(_currentRWaveHeight, -0.35f, t);
         }
 
         // Return to baseline
@@ -120,10 +126,17 @@ public class ECGGraph : MaskableGraphic
         {
             float t = (normalized - 0.55f) / 0.13f;
 
-            return Mathf.Sin(t * Mathf.PI) * 0.3f;
+            return Mathf.Sin(t * Mathf.PI) * _currentTWaveHeight;
         }
 
         return 0f;
+    }
+
+    private void CreateHeartBeatVariation()
+    {
+        _currentRWaveHeight = Random.Range(0.9f, 1.1f);
+        _currentTWaveHeight = Random.Range(0.27f, 0.33f);
+        _currentPWaveHeight = Random.Range(0.18f, 0.22f);
     }
 
     protected override void OnPopulateMesh(VertexHelper vh)
