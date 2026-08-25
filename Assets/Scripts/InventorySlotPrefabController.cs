@@ -1,23 +1,31 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using System.Collections;
+using TMPro;
 
 public class InventorySlotPrefabController : MonoBehaviour
 {
+    public TextMeshProUGUI QuestionText;
+    public string Question;
     public bool isEnabled = true;
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(isEnabled && Mouse.current.leftButton.wasPressedThisFrame && GetComponent<RectTransform>().rect.Contains(Input.mousePosition))
-        {
-            onClick();
-            print("Inventory clicked");
-        }
-    }
 
     private void onClick()
     {
-        
+        if (isEnabled)
+        {
+            print("Clicked");
+            QuestionText.text = Question;
+        }
+    }
+
+    private void Start()
+    {
+        if (GetComponent<Button>() == null)
+        {
+            gameObject.AddComponent<Button>();
+        }
+        GetComponent<Button>().onClick.AddListener(onClick);
     }
 }
