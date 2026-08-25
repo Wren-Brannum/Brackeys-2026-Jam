@@ -59,7 +59,13 @@ public class ShiftGameObjectMasterController : MonoBehaviour
     private IEnumerator MoveToTargetOverTime(float targetXPosition, float targetYPosition)
     {
         float elapsedTime = 0f;
-
+        if(ShiftedOut)
+        {
+            TextToChange.text = OutText;
+        } else
+        {
+            TextToChange.text = InText;
+        }
         while (elapsedTime < Duration)
         {
             float t = elapsedTime / Duration; 
@@ -78,15 +84,5 @@ public class ShiftGameObjectMasterController : MonoBehaviour
                 targetYPosition == 0f ? rectTransform.localPosition.y : targetYPosition, 
                 rectTransform.localPosition.z);
         currentMovementCoroutine = null;
-    }
-    private void Update()
-    {
-        if(ShiftedOut)
-        {
-            TextToChange.text = OutText;
-        } else
-        {
-            TextToChange.text = InText;
-        }
     }
 }
