@@ -79,7 +79,7 @@ public class SpeechController : MonoBehaviour
             StopCoroutine(_displayTextCoroutine);
             _text.text = _activeDialogue.DialogueLines[_dialogueIndex].Text;
             _displayTextCoroutine = null;
-        } else if (_dialogueIndex < _activeDialogue.DialogueLines.Length)
+        } else if (_dialogueIndex < _activeDialogue.DialogueLines.Length - 1)
         {
             _dialogueIndex++;
             DisplayText();
