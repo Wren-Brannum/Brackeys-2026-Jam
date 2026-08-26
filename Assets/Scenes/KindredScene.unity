@@ -956,6 +956,7 @@ MonoBehaviour:
   _restingHeartRate: 65
   _minHeartRate: 60
   _maxHeartRate: 180
+  _stressChangeHeartRate: 20
   _heartRateGraph: {fileID: 662717568}
   _heartRateIncrease: 10
   _pokeDuration: 1
@@ -1053,6 +1054,7 @@ MonoBehaviour:
   _text: {fileID: 1094219022}
   _charactersPerSecond: 15
   _nextIcon: {fileID: 615644513}
+  _activeInterviewee: {fileID: 1251588449}
   _initialDialogue: {fileID: 11400000, guid: 5e5d7fe89c076f04dbcbefb35ea22411, type: 2}
 --- !u!114 &1303326835
 MonoBehaviour:

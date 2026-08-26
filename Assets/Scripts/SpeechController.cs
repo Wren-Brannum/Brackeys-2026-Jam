@@ -10,6 +10,8 @@ public class SpeechController : MonoBehaviour
 
     [SerializeField] private Image _nextIcon;
 
+    [SerializeField] private IntervieweeController _activeInterviewee; // Make this gotten somewhere else if we can swap
+
     private DialogueScriptableObject _activeDialogue;
     private int _dialogueIndex;
 
@@ -56,15 +58,20 @@ public class SpeechController : MonoBehaviour
             StopCoroutine(_displayTextCoroutine);
         }
 
-        _displayTextCoroutine = StartCoroutine(DisplayTextCoroutine());
+        var dialogueLine = _activeDialogue.DialogueLines[_dialogueIndex];
+
+        if (dialogueLine.AffectStress)
+        {
+            _activeInterviewee.AffectStressFromStatement(dialogueLine.StatementType);
+        }
+
+        _displayTextCoroutine = StartCoroutine(DisplayTextCoroutine(dialogueLine));
     }
 
-    private IEnumerator DisplayTextCoroutine()
+    private IEnumerator DisplayTextCoroutine(DialogueLine dialogueLine)
     {
         _text.text = "";
         _nextIcon.gameObject.SetActive(false);
-
-        var dialogueLine = _activeDialogue.DialogueLines[_dialogueIndex];
 
         foreach (char character in dialogueLine.Text)
         {

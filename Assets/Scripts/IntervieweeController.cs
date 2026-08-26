@@ -13,6 +13,8 @@ public class IntervieweeController : MonoBehaviour
     [SerializeField] private float _minHeartRate = 60f;
     [SerializeField] private float _maxHeartRate = 160f;
 
+    [SerializeField] private float _stressChangeHeartRate = 20f;
+
     [Header("References")]
     [SerializeField] private ECGGraph _heartRateGraph;
 
@@ -32,7 +34,7 @@ public class IntervieweeController : MonoBehaviour
 
         _animator = GetComponent<Animator>();
 
-        GetComponent<Button>().onClick.AddListener(Poke);
+        // GetComponent<Button>().onClick.AddListener(Poke);
     }
 
     private void Poke()
@@ -58,11 +60,32 @@ public class IntervieweeController : MonoBehaviour
         _activePoke = null;
     }
 
+    public void IncreaseHeartRate(float heartRate)
+    {
+        SetHeartRate(Mathf.Min(_currentHeartRate + _heartRateIncrease, _maxHeartRate));
+    }
+
+    public void DecreaseHeartRate(float heartRate)
+    {
+        SetHeartRate(Mathf.Max(_currentHeartRate - _heartRateIncrease, _minHeartRate));
+    }
+
     private void SetHeartRate(float newHeartRate)
     {
         _currentHeartRate = newHeartRate;
 
         HeartRateChange.Invoke(newHeartRate);
         _heartRateGraph.SetBPM(newHeartRate);
+    }
+
+    public void AffectStressFromStatement(StatementType _statementType)
+    {
+        if (_statementType == StatementType.TRUTH)
+        {
+            DecreaseHeartRate(_stressChangeHeartRate);
+        } else if (_statementType == StatementType.LIE)
+        {
+            IncreaseHeartRate(_stressChangeHeartRate);
+        }
     }
 }

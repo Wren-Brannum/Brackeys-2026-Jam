@@ -14,4 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueScriptableObject
   _dialogueLines:
   - Text: My name is John Amigo!
+    StatementType: 0
+    AffectStress: 0
+  - Text: I am 58 years old.
+    StatementType: 2
+    AffectStress: 1
   - Text: What do you want?
+    StatementType: 0
+    AffectStress: 0

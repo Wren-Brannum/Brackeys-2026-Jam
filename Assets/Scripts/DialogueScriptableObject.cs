@@ -16,4 +16,8 @@ public class DialogueScriptableObject : ScriptableObject
 public struct DialogueLine
 {
     public string Text;
+
+    public StatementType StatementType;
+
+    public bool AffectStress;
 }
