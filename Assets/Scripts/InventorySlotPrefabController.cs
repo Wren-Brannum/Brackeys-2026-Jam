@@ -9,6 +9,7 @@ public class InventorySlotPrefabController : MonoBehaviour
 {
     public TextMeshProUGUI QuestionText;
     public string Question;
+    public int questionId = -1; 
     public bool isEnabled = true;
 
     private void onClick()
