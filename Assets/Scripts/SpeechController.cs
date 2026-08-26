@@ -8,6 +8,8 @@ public class SpeechController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private float _charactersPerSecond = 20f;
 
+    [SerializeField] private Image _nextIcon;
+
     private DialogueScriptableObject _activeDialogue;
     private int _dialogueIndex;
 
@@ -60,6 +62,7 @@ public class SpeechController : MonoBehaviour
     private IEnumerator DisplayTextCoroutine()
     {
         _text.text = "";
+        _nextIcon.gameObject.SetActive(false);
 
         var dialogueLine = _activeDialogue.DialogueLines[_dialogueIndex];
 
@@ -69,6 +72,8 @@ public class SpeechController : MonoBehaviour
             yield return new WaitForSeconds(1f / _charactersPerSecond);
         }
 
+        ShowFullText();
+
         _displayTextCoroutine = null;
     }
 
@@ -77,12 +82,25 @@ public class SpeechController : MonoBehaviour
         if (_displayTextCoroutine != null)
         {
             StopCoroutine(_displayTextCoroutine);
-            _text.text = _activeDialogue.DialogueLines[_dialogueIndex].Text;
+            ShowFullText();
             _displayTextCoroutine = null;
         } else if (_dialogueIndex < _activeDialogue.DialogueLines.Length - 1)
         {
             _dialogueIndex++;
             DisplayText();
+        }
+    }
+
+    private void ShowFullText()
+    {
+        _text.text = _activeDialogue.DialogueLines[_dialogueIndex].Text;
+        
+        if (_dialogueIndex != _activeDialogue.DialogueLines.Length - 1)
+        {
+            _nextIcon.gameObject.SetActive(true);
+        } else
+        {
+            _nextIcon.gameObject.SetActive(false);
         }
     }
 }
