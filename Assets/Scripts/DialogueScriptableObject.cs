@@ -4,7 +4,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "DialogueData", menuName = "Data/DialogueObject", order = 0)]
 public class DialogueScriptableObject : ScriptableObject
 {
+    [SerializeField] private string _dialogueId;
     [SerializeField] private DialogueLine[] _dialogueLines;
+
+    public string DialogueId
+    {
+        get => _dialogueId;
+    }
 
     public DialogueLine[] DialogueLines
     {
@@ -20,4 +26,6 @@ public struct DialogueLine
     public StatementType StatementType;
 
     public bool AffectStress;
+
+    public string ResponseId;
 }

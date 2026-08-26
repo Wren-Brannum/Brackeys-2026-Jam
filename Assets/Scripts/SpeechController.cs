@@ -11,6 +11,7 @@ public class SpeechController : MonoBehaviour
     [SerializeField] private Image _nextIcon;
 
     [SerializeField] private IntervieweeController _activeInterviewee; // Make this gotten somewhere else if we can swap
+    [SerializeField] private StressManager _stressManager;
 
     private DialogueScriptableObject _activeDialogue;
     private int _dialogueIndex;
@@ -109,5 +110,20 @@ public class SpeechController : MonoBehaviour
         {
             _nextIcon.gameObject.SetActive(false);
         }
+    }
+
+    public void Accuse()
+    {
+        var dialogueLine = _activeDialogue.DialogueLines[_dialogueIndex];
+
+        if (dialogueLine.StatementType == StatementType.LIE)
+        {
+            _activeInterviewee.Accuse(true);
+        } else
+        {
+            _activeInterviewee.Accuse(false);
+        }
+
+        _stressManager.ActivateResponse(dialogueLine.ResponseId, dialogueLine.StatementType);
     }
 }

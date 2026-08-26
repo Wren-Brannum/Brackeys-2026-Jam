@@ -11,7 +11,9 @@ public class IntervieweeController : MonoBehaviour
     [SerializeField] private float _minHeartRate = 60f;
     [SerializeField] private float _maxHeartRate = 160f;
 
-    [SerializeField] private float _stressChangeHeartRate = 20f;
+    [SerializeField] private float _dialogueChangeHeartRate = 15f;
+    [SerializeField] private float _accuseSuccessChangeHeartRate = 40f;
+    [SerializeField] private float _accuseFailureChangeHeartRate = 10f;
 
     [Header("References")]
     [SerializeField] private ECGGraph _heartRateGraph;
@@ -68,6 +70,18 @@ public class IntervieweeController : MonoBehaviour
         SetHeartRate(Mathf.Max(_currentHeartRate - _heartRateIncrease, _minHeartRate));
     }
 
+    public void Accuse(bool success)
+    {
+        if (success)
+        {
+            IncreaseHeartRate(_accuseSuccessChangeHeartRate);
+            _animator.SetTrigger("Stress");
+        } else
+        {
+            DecreaseHeartRate(_accuseFailureChangeHeartRate);
+        }
+    }
+
     private void SetHeartRate(float newHeartRate)
     {
         _currentHeartRate = newHeartRate;
@@ -80,10 +94,10 @@ public class IntervieweeController : MonoBehaviour
     {
         if (_statementType == StatementType.TRUTH)
         {
-            DecreaseHeartRate(_stressChangeHeartRate);
+            DecreaseHeartRate(_dialogueChangeHeartRate);
         } else if (_statementType == StatementType.LIE)
         {
-            IncreaseHeartRate(_stressChangeHeartRate);
+            IncreaseHeartRate(_dialogueChangeHeartRate);
         }
     }
 }
