@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ECGGraph : MaskableGraphic
+public class BreathingGraph : MaskableGraphic
 {
     [Header("Display")]
     [SerializeField] private float _scrollSpeed = 100f;
@@ -9,21 +9,15 @@ public class ECGGraph : MaskableGraphic
     [SerializeField] private float _lineThickness = 2f;
     [SerializeField] private int _samples = 500;
 
-    [Header("Heart")]
-    [SerializeField] private float _bpm = 75f;
+    [Header("Breathing")]
+    [SerializeField] private float _breathsPerMinute = 12f;
 
     private float[] _values;
 
     private float _samplePosition;
-    private float _heartbeatTime;
+    private float _breathingTime;
 
-    // Variation
-    private float _currentRWaveHeight = 1f;
-    private float _currentTWaveHeight = 0.3f;
-    private float _currentPWaveHeight = 0.2f;
-    private float _currentSWaveHeight = -0.35f;
-
-    float _heartbeatDuration => 60f / _bpm;
+    private float _breathingDuration => 60f / _breathsPerMinute;
 
     protected override void Awake()
     {
@@ -35,8 +29,6 @@ public class ECGGraph : MaskableGraphic
         {
             _values[i] = 0f;
         }
-
-        CreateHeartBeatVariation();
     }
 
     private void Update()
@@ -58,84 +50,27 @@ public class ECGGraph : MaskableGraphic
 
             for (int i = 0; i < _samples - 1; i++)
             {
-                _values[i] = _values[i+1];
+                _values[i] = _values[i + 1];
             }
 
-            _values[_samples - 1] = GetHeartbeatValue(_heartbeatTime);
+            _values[_samples - 1] = GetBreathingValue(_breathingTime);
 
-            _heartbeatTime += pixelsPerSample / _scrollSpeed;
+            _breathingTime += pixelsPerSample / _scrollSpeed;
 
-            if (_heartbeatTime >= _heartbeatDuration)
+            if (_breathingTime >= _breathingDuration)
             {
-                _heartbeatTime -= _heartbeatDuration;
-                CreateHeartBeatVariation();
+                _breathingTime -= _breathingDuration;
             }
         }
 
         SetVerticesDirty();
     }
 
-    private float GetHeartbeatValue(float time)
+    private float GetBreathingValue(float time)
     {
-        float normalized = time / _heartbeatDuration;
+        float normalized = time / _breathingDuration;
 
-        // P wave
-        if (normalized >= 0.20f && normalized < 0.27f)
-        {
-            float t = (normalized - 0.20f) / 0.07f;
-
-            return Mathf.Sin(t * Mathf.PI) * _currentPWaveHeight;
-        }
-
-        // Q wave
-        if (normalized >= 0.32f && normalized < 0.35f)
-        {
-            float t = (normalized - 0.32f) / 0.03f;
-
-            return Mathf.Lerp(0f, -0.25f, t);
-        }
-
-        // R wave
-        if (normalized >= 0.35f && normalized < 0.38f)
-        {
-            float t = (normalized - 0.35f) / 0.03f;
-
-            return Mathf.Lerp(-0.25f, _currentRWaveHeight, t);
-        }
-
-        // S wave
-        if (normalized >= 0.38f && normalized < 0.42f)
-        {
-            float t = (normalized - 0.38f) / 0.04f;
-
-            return Mathf.Lerp(_currentRWaveHeight, _currentSWaveHeight, t);
-        }
-
-        // Return to baseline
-        if (normalized >= 0.42f && normalized < 0.48f)
-        {
-            float t = (normalized - 0.42f) / 0.06f;
-
-            return Mathf.Lerp(_currentSWaveHeight, 0f, t);
-        }
-
-        // T wave
-        if (normalized >= 0.55f && normalized < 0.68f)
-        {
-            float t = (normalized - 0.55f) / 0.13f;
-
-            return Mathf.Sin(t * Mathf.PI) * _currentTWaveHeight;
-        }
-
-        return 0f;
-    }
-
-    private void CreateHeartBeatVariation()
-    {
-        _currentRWaveHeight = Random.Range(0.9f, 1.1f);
-        _currentTWaveHeight = Random.Range(0.27f, 0.33f);
-        _currentPWaveHeight = Random.Range(0.18f, 0.22f);
-        _currentSWaveHeight = Random.Range(-0.38f, -0.32f);
+        return Mathf.Sin(normalized * Mathf.PI * 2f);
     }
 
     protected override void OnPopulateMesh(VertexHelper vh)
@@ -152,9 +87,9 @@ public class ECGGraph : MaskableGraphic
         float xStep = width / (_samples - 1);
 
         float height = rectTransform.rect.height;
-        float amplitude = height * (_amplitude / 2);
+        float amplitude = height * (_amplitude / 2f);
 
-        for (int i = 0; i < _samples - 1; i++) 
+        for (int i = 0; i < _samples - 1; i++)
         {
             float x1 = -width / 2f + i * xStep;
             float x2 = -width / 2f + (i + 1) * xStep;
@@ -199,9 +134,9 @@ public class ECGGraph : MaskableGraphic
         vh.AddTriangle(index, index + 2, index + 3);
     }
 
-    public void SetBPM(float newBpm)
+    public void SetBreathsPerMinute(float newBreathsPerMinute)
     {
-        _bpm = Mathf.Max(1f, newBpm);
+        _breathsPerMinute = Mathf.Max(1f, newBreathsPerMinute);
     }
 
     protected override void OnValidate()
@@ -209,6 +144,7 @@ public class ECGGraph : MaskableGraphic
         base.OnValidate();
 
         _samples = Mathf.Max(2, _samples);
+        _breathsPerMinute = Mathf.Max(1f, _breathsPerMinute);
 
         if (_values == null || _values.Length != _samples)
         {
