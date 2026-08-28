@@ -126,4 +126,8 @@ public class SpeechController : MonoBehaviour
 
         _stressManager.ActivateResponse(dialogueLine.ResponseId, dialogueLine.StatementType);
     }
+    public void setDialogue(DialogueScriptableObject dialogue)
+    {
+        ActiveDialogue = dialogue;
+    }
 }
