@@ -1232,8 +1232,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcbd8193d80ffb244903d09e2b613ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::questionController
-  questionToDestroy: {fileID: 0}
-  questionPrefab: {fileID: 5950153435308929692, guid: c0205744a002270458d49e89ad90e356, type: 3}
+  questionPrefab: {fileID: 2734173918390325986, guid: 9398ed6d62512624cb31de144a4d0473, type: 3}
+  questionDialogue: {fileID: 11400000, guid: 97bd708ccf99fec46888c28b0b7c23b4, type: 2}
+  activeSpeechController: {fileID: 305980472}
 --- !u!114 &839174553
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fb55f912eafaf742a4b62cc26bf47a8, type: 3}
   m_Name: BottleResponse
   m_EditorClassIdentifier: Assembly-CSharp::DialogueScriptableObject
-  _dialogueId: 
-  _dialogueLines: []
+  _dialogueId: BottleResponse
+  _dialogueLines:
+  - Text: Yes that is mine, what about it?
+    StatementType: 1
+    AffectStress: 0
+    ResponseId: 
