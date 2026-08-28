@@ -15,23 +15,34 @@ public class questionController : MonoBehaviour
 
     public void createQuestion(string questionText)
     {
+        GameObject chatBoard = GameObject.FindGameObjectWithTag("ChatBoard");
+        if (chatBoard == null) return;
+
         GameObject[] existingSlots = GameObject.FindGameObjectsWithTag("QuestionInstance");
-        Vector3 spawnPosition;
+        
+        Vector3 localSpawnPosition;
 
         if (existingSlots.Length > 0)
         {
-            spawnPosition = new Vector3(0,0,0);
+            Vector3 currentSlotWorldPos = existingSlots[existingSlots.Length - 1].transform.position;
+            
+            localSpawnPosition = chatBoard.transform.InverseTransformPoint(currentSlotWorldPos);
+            
+            localSpawnPosition.y -= questionHeight;
         }
         else
         {
-            GameObject[] questionSlots = GameObject.FindGameObjectsWithTag("QuestionInstance");
-            Vector3 currentQuestionPosition = questionSlots[questionSlots.Length - 1].transform.position;
-            spawnPosition = new Vector3(currentQuestionPosition.x, 
-            currentQuestionPosition.y - questionHeight, currentQuestionPosition.z);
+            localSpawnPosition = new Vector3(0, 0, 0);
         }
 
-        GameObject newQ = Instantiate(questionPrefab, spawnPosition, Quaternion.identity);
+        GameObject newQ = Instantiate(questionPrefab, chatBoard.transform.position, Quaternion.identity);
+
+        newQ.transform.SetParent(chatBoard.transform);
         
+        newQ.transform.localPosition = localSpawnPosition;
+
+        if (!newQ.CompareTag("QuestionInstance")) newQ.tag = "QuestionInstance";
+
         GameObject textContainer = new GameObject("QuestionText");
         RectTransform rectTransform = textContainer.AddComponent<RectTransform>();
         TextMeshProUGUI tmpComponent = textContainer.AddComponent<TextMeshProUGUI>();
@@ -44,7 +55,5 @@ public class questionController : MonoBehaviour
         rectTransform.offsetMax = Vector2.zero; 
 
         tmpComponent.text = questionText;
-        
-        if (!newQ.CompareTag("QuestionSlot")) newQ.tag = "QuestionSlot";
     }
 }
