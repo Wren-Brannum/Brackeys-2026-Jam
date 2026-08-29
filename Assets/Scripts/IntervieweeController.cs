@@ -19,9 +19,6 @@ public class IntervieweeController : MonoBehaviour
     [Header("References")]
     [SerializeField] private ECGGraph _heartRateGraph;
 
-    [Header("Poke")]
-    [SerializeField] private float _heartRateIncrease = 5f;
-    [SerializeField] private float _pokeDuration = 2f;
     public int lyingEyesIndex = -1;
     public Sprite[] beautifulEyes;
     public Image leftEye;
@@ -38,41 +35,16 @@ public class IntervieweeController : MonoBehaviour
         SetHeartRate(_restingHeartRate);
 
         _animator = GetComponent<Animator>();
-
-        // GetComponent<Button>().onClick.AddListener(Poke);
-    }
-
-    private void Poke()
-    {
-        if (_activePoke != null) 
-        {
-            return;
-        }
-
-        SetHeartRate(Mathf.Min(_currentHeartRate + _heartRateIncrease, _maxHeartRate));
-
-        _activePoke = StartCoroutine(PlayPokeAnimation());
-    }
-
-    private IEnumerator PlayPokeAnimation()
-    {
-        _animator.SetBool("Stressed", true);
-
-        yield return new WaitForSeconds(_pokeDuration);
-
-        _animator.SetBool("Stressed", false);
-
-        _activePoke = null;
     }
 
     public void IncreaseHeartRate(float heartRate)
     {
-        SetHeartRate(Mathf.Min(_currentHeartRate + _heartRateIncrease, _maxHeartRate));
+        SetHeartRate(Mathf.Min(_currentHeartRate + heartRate, _maxHeartRate));
     }
 
     public void DecreaseHeartRate(float heartRate)
     {
-        SetHeartRate(Mathf.Max(_currentHeartRate - _heartRateIncrease, _minHeartRate));
+        SetHeartRate(Mathf.Max(_currentHeartRate - heartRate, _minHeartRate));
     }
 
     public void Accuse(bool success)
