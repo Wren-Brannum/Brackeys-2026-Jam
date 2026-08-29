@@ -87,6 +87,7 @@ public class questionController : MonoBehaviour
         foreach (char character in text)
         {
             textComponent.text += character;
+            AudioManager.Instance.PlayRandomTypingSound();
             yield return new WaitForSeconds(1f / _charactersPerSecond);
         }
 

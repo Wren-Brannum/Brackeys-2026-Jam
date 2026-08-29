@@ -23,9 +23,11 @@ public class IntervieweeController : MonoBehaviour
     [SerializeField] private float _heartRateIncrease = 5f;
     [SerializeField] private float _pokeDuration = 2f;
     public int lyingEyesIndex = -1;
+    public int eyeBlinkIndex = -1;
     public Sprite[] beautifulEyes;
     public Image leftEye;
     public Image rightEye;
+    private int fixedFrame = 0;
 
     private float _currentHeartRate;
 
@@ -40,6 +42,16 @@ public class IntervieweeController : MonoBehaviour
         _animator = GetComponent<Animator>();
 
         // GetComponent<Button>().onClick.AddListener(Poke);
+    }
+
+    private void FixedUpdate()
+    {
+        // if(fixedFrame % 60 == 0 && eyeBlinkIndex != -1)
+        // {
+        //     fixedFrame = 0;
+        //     ChangeBothEyesViaIndex(eyeBlinkIndex);
+        // }
+        // fixedFrame++;
     }
 
     private void Poke()
@@ -111,7 +123,12 @@ public class IntervieweeController : MonoBehaviour
     }
     public void ChangeBothEyesViaIndex(int eyeIndex)
     {
+        playEyeSFX();
         leftEye.sprite = beautifulEyes[eyeIndex];
         rightEye.sprite = beautifulEyes[eyeIndex];
+    }
+    private void playEyeSFX()
+    {
+        AudioManager.Instance.PlayEyeSound();
     }
 }
