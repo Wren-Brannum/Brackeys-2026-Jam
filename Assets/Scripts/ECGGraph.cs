@@ -67,6 +67,7 @@ public class ECGGraph : MaskableGraphic
 
             if (_heartbeatTime >= _heartbeatDuration)
             {
+                AudioManager.Instance.PlayHeartBeatSound();
                 _heartbeatTime -= _heartbeatDuration;
                 CreateHeartBeatVariation();
             }

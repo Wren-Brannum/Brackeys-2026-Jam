@@ -2544,8 +2544,8 @@ MonoBehaviour:
   _text: {fileID: 1279540907}
   _charactersPerSecond: 15
   _nextIcon: {fileID: 561916116}
-  _activeInterviewee: {fileID: 0}
-  _stressManager: {fileID: 0}
+  _activeInterviewee: {fileID: 774201878}
+  _stressManager: {fileID: 774201877}
   _initialDialogue: {fileID: 11400000, guid: 5e5d7fe89c076f04dbcbefb35ea22411, type: 2}
 --- !u!114 &1986295981
 MonoBehaviour:
