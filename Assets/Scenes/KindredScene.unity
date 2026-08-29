@@ -1882,7 +1882,8 @@ MonoBehaviour:
   _stressChangeOnSuccessfulAccuse: 30
   _stressChangeOnFailedAccuse: 0
   _heartRateGraph: {fileID: 662717568}
-  lyingEyesIndex: -1
+  _breathingGraph: {fileID: 363608243}
+  lyingEyesIndex: 2
   beautifulEyes: []
   leftEye: {fileID: 1389818351}
   rightEye: {fileID: 1348317972}
