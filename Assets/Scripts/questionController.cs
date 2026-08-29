@@ -17,6 +17,11 @@ public class questionController : MonoBehaviour
         Destroy(question);
     }
 
+    private void disableClick()
+    {
+        GetComponent<Button>().interactable = false;
+    }
+
     public void createQuestion(string questionText)
     {
         GameObject chatBoard = GameObject.FindGameObjectWithTag("ChatBoard");
@@ -27,6 +32,7 @@ public class questionController : MonoBehaviour
         CreateTextContainer(newQ, questionText);
 
         SetupButtonInteraction(newQ, activeSpeechController, questionDialogue);
+        disableClick();
     }
 
     private Vector3 CalculateSpawnPosition(GameObject parent)
