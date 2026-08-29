@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SpeechController : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _text;
-    [SerializeField] private float _charactersPerSecond = 20f;
+    [SerializeField] private float _charactersPerSecond = Constants._charactersPerSecond;
 
     [SerializeField] private Image _nextIcon;
 

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class questionController : MonoBehaviour
 {
     [SerializeField] public GameObject questionPrefab;
+    [SerializeField] private float _charactersPerSecond = Constants._charactersPerSecond;
     
     public DialogueScriptableObject questionDialogue; 
     public SpeechController activeSpeechController;
@@ -15,6 +16,11 @@ public class questionController : MonoBehaviour
     public void deleteQuestion(GameObject question)
     {
         Destroy(question);
+    }
+
+    private void disableClick()
+    {
+        GetComponent<Button>().interactable = false;
     }
 
     public void createQuestion(string questionText)
@@ -27,6 +33,7 @@ public class questionController : MonoBehaviour
         CreateTextContainer(newQ, questionText);
 
         SetupButtonInteraction(newQ, activeSpeechController, questionDialogue);
+        disableClick();
     }
 
     private Vector3 CalculateSpawnPosition(GameObject parent)
@@ -70,7 +77,20 @@ public class questionController : MonoBehaviour
         rectTransform.offsetMin = Vector2.zero; 
         rectTransform.offsetMax = Vector2.zero; 
 
-        tmpComponent.text = text;
+        StartCoroutine(DisplayTextCoroutine(tmpComponent, text));
+    }
+
+    private IEnumerator DisplayTextCoroutine(TextMeshProUGUI textComponent, string text)
+    {
+        textComponent.text = "";
+
+        foreach (char character in text)
+        {
+            textComponent.text += character;
+            yield return new WaitForSeconds(1f / _charactersPerSecond);
+        }
+
+        textComponent.text = text;
     }
 
     private void SetupButtonInteraction(GameObject prefabInstance, SpeechController speechController, DialogueScriptableObject dialogue)

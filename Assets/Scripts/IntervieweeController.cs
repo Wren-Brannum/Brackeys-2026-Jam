@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class IntervieweeController : MonoBehaviour
 {
@@ -21,6 +22,10 @@ public class IntervieweeController : MonoBehaviour
     [Header("Poke")]
     [SerializeField] private float _heartRateIncrease = 5f;
     [SerializeField] private float _pokeDuration = 2f;
+    public int lyingEyesIndex = -1;
+    public Sprite[] beautifulEyes;
+    public Image leftEye;
+    public Image rightEye;
 
     private float _currentHeartRate;
 
@@ -99,5 +104,14 @@ public class IntervieweeController : MonoBehaviour
         {
             IncreaseHeartRate(_dialogueChangeHeartRate);
         }
+        if(lyingEyesIndex != -1)
+        {
+            ChangeBothEyesViaIndex(lyingEyesIndex);
+        }
+    }
+    public void ChangeBothEyesViaIndex(int eyeIndex)
+    {
+        leftEye.sprite = beautifulEyes[eyeIndex];
+        rightEye.sprite = beautifulEyes[eyeIndex];
     }
 }
