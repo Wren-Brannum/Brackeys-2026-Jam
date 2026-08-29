@@ -1,27 +1,20 @@
-using System.Collections;
+using System;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class IntervieweeController : MonoBehaviour
 {
-    public UnityEvent<float> HeartRateChange = new UnityEvent<float>();
-
-    [Header("Heart rate")]
-    [SerializeField] private float _restingHeartRate = 75f;
-    [SerializeField] private float _minHeartRate = 60f;
-    [SerializeField] private float _maxHeartRate = 160f;
-
-    [SerializeField] private float _dialogueChangeHeartRate = 15f;
-    [SerializeField] private float _accuseSuccessChangeHeartRate = 40f;
-    [SerializeField] private float _accuseFailureChangeHeartRate = 10f;
+    [Header("Stress")]
+    [SerializeField] private StressScriptableObject _stressConfig;
+    [SerializeField] private int _stressOnLying = 20;
+    [SerializeField] private int _stressChangeOnSuccessfulAccuse = 30;
+    [SerializeField] private int _stressChangeOnFailedAccuse = 0;
 
     [Header("References")]
     [SerializeField] private ECGGraph _heartRateGraph;
+    [SerializeField] private BreathingGraph _breathingGraph;
 
-    [Header("Poke")]
-    [SerializeField] private float _heartRateIncrease = 5f;
-    [SerializeField] private float _pokeDuration = 2f;
     public int lyingEyesIndex = -1;
     public int eyeBlinkIndex = -1;
     public Sprite[] beautifulEyes;
@@ -29,96 +22,75 @@ public class IntervieweeController : MonoBehaviour
     public Image rightEye;
     private int fixedFrame = 0;
 
-    private float _currentHeartRate;
+    private int _permStressLevel;
+    private int _tempStressLevel;
+    private int _totalStressLevel => _permStressLevel + _tempStressLevel;
 
     private Animator _animator;
 
-    private Coroutine _activePoke;
-
     private void Awake()
     {
-        SetHeartRate(_restingHeartRate);
+        SetPermStressRate(0);
 
         _animator = GetComponent<Animator>();
-
-        // GetComponent<Button>().onClick.AddListener(Poke);
     }
 
-    private void FixedUpdate()
+    public void DecreaseStressRate(int stressRate)
     {
-        // if(fixedFrame % 60 == 0 && eyeBlinkIndex != -1)
-        // {
-        //     fixedFrame = 0;
-        //     ChangeBothEyesViaIndex(eyeBlinkIndex);
-        // }
-        // fixedFrame++;
-    }
-
-    private void Poke()
-    {
-        if (_activePoke != null) 
-        {
-            return;
-        }
-
-        SetHeartRate(Mathf.Min(_currentHeartRate + _heartRateIncrease, _maxHeartRate));
-
-        _activePoke = StartCoroutine(PlayPokeAnimation());
-    }
-
-    private IEnumerator PlayPokeAnimation()
-    {
-        _animator.SetBool("Stressed", true);
-
-        yield return new WaitForSeconds(_pokeDuration);
-
-        _animator.SetBool("Stressed", false);
-
-        _activePoke = null;
-    }
-
-    public void IncreaseHeartRate(float heartRate)
-    {
-        SetHeartRate(Mathf.Min(_currentHeartRate + _heartRateIncrease, _maxHeartRate));
-    }
-
-    public void DecreaseHeartRate(float heartRate)
-    {
-        SetHeartRate(Mathf.Max(_currentHeartRate - _heartRateIncrease, _minHeartRate));
+        SetPermStressRate(Mathf.Clamp(_permStressLevel - stressRate, 0, 100));
     }
 
     public void Accuse(bool success)
     {
         if (success)
         {
-            IncreaseHeartRate(_accuseSuccessChangeHeartRate);
+            SetPermStressRate(Mathf.Clamp(_permStressLevel + _stressChangeOnSuccessfulAccuse, 0, 100));
             _animator.SetTrigger("Stress");
         } else
         {
-            DecreaseHeartRate(_accuseFailureChangeHeartRate);
+            SetPermStressRate(Mathf.Clamp(_permStressLevel - _stressChangeOnFailedAccuse, 0, 100));
         }
     }
 
-    private void SetHeartRate(float newHeartRate)
+    private void SetPermStressRate(int newStressRate)
     {
-        _currentHeartRate = newHeartRate;
+        _permStressLevel = newStressRate;
 
-        HeartRateChange.Invoke(newHeartRate);
-        _heartRateGraph.SetBPM(newHeartRate);
+        StressRateSet();
+    }
+
+    public void SetTempStressRate(int tempStressRate)
+    {
+        _tempStressLevel = tempStressRate;
+
+        StressRateSet();
+
+    }
+
+    private void StressRateSet()
+    {
+        var stressData = _stressConfig.StressData.LastOrDefault(
+                x => x.StressLevel <= _totalStressLevel);
+
+        Debug.Log(_totalStressLevel.ToString() + ": " + stressData.StressLevel);
+
+        _heartRateGraph.SetBPM(stressData.HeartRate);
+        _breathingGraph.SetBreathsPerMinute(stressData.BreathingRate);
     }
 
     public void AffectStressFromStatement(StatementType _statementType)
     {
-        if (_statementType == StatementType.TRUTH)
+        if (_statementType == StatementType.LIE)
         {
-            DecreaseHeartRate(_dialogueChangeHeartRate);
-        } else if (_statementType == StatementType.LIE)
+            SetTempStressRate(_stressOnLying);
+
+            if (lyingEyesIndex != -1)
+            {
+                ChangeBothEyesViaIndex(lyingEyesIndex);
+            }
+        } else
         {
-            IncreaseHeartRate(_dialogueChangeHeartRate);
-        }
-        if(lyingEyesIndex != -1)
-        {
-            ChangeBothEyesViaIndex(lyingEyesIndex);
+            SetTempStressRate(0);
         }
     }
     public void ChangeBothEyesViaIndex(int eyeIndex)

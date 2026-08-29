@@ -25,7 +25,5 @@ public struct DialogueLine
 
     public StatementType StatementType;
 
-    public bool AffectStress;
-
     public string ResponseId;
 }

@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1509c8f18712e4e4fb760c1291da5af9, type: 3}
+  m_Name: RichManStress
+  m_EditorClassIdentifier: Assembly-CSharp::StressScriptableObject
+  _stressData:
+  - StressLevel: 0
+    HeartRate: 65
+    BreathingRate: 14
+  - StressLevel: 10
+    HeartRate: 75
+    BreathingRate: 16
+  - StressLevel: 20
+    HeartRate: 85
+    BreathingRate: 18
+  - StressLevel: 30
+    HeartRate: 95
+    BreathingRate: 20
+  - StressLevel: 40
+    HeartRate: 105
+    BreathingRate: 22
+  - StressLevel: 50
+    HeartRate: 115
+    BreathingRate: 24
+  - StressLevel: 60
+    HeartRate: 125
+    BreathingRate: 26
+  - StressLevel: 70
+    HeartRate: 135
+    BreathingRate: 28
+  - StressLevel: 80
+    HeartRate: 145
+    BreathingRate: 30
+  - StressLevel: 90
+    HeartRate: 155
+    BreathingRate: 32
+  - StressLevel: 100
+    HeartRate: 165
+    BreathingRate: 34
+  - StressLevel: 110
+    HeartRate: 175
+    BreathingRate: 36
+  - StressLevel: 120
+    HeartRate: 185
+    BreathingRate: 38
+  - StressLevel: 130
+    HeartRate: 195
+    BreathingRate: 40
+  - StressLevel: 140
+    HeartRate: 205
+    BreathingRate: 42
