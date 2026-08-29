@@ -2249,6 +2249,15 @@ MonoBehaviour:
   _heartRateGraph: {fileID: 12170311}
   _heartRateIncrease: 10
   _pokeDuration: 1
+  lyingEyesIndex: 2
+  beautifulEyes:
+  - {fileID: -8817426130257391540, guid: cca55c7b3ec063346a6b1c15e9497179, type: 3}
+  - {fileID: 3060230111996817670, guid: cca55c7b3ec063346a6b1c15e9497179, type: 3}
+  - {fileID: -7553300288962703749, guid: cca55c7b3ec063346a6b1c15e9497179, type: 3}
+  - {fileID: 6526169181366970619, guid: cca55c7b3ec063346a6b1c15e9497179, type: 3}
+  - {fileID: -4003314775230925824, guid: cca55c7b3ec063346a6b1c15e9497179, type: 3}
+  leftEye: {fileID: 1573965199}
+  rightEye: {fileID: 1300736744}
 --- !u!224 &1577407031
 RectTransform:
   m_ObjectHideFlags: 0

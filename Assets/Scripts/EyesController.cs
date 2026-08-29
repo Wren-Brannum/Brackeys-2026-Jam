@@ -7,13 +7,9 @@ public class EyesController : MonoBehaviour
     public Sprite[] beautifulEyes;
     public Image leftEye;
     public Image rightEye;
-    private void Start()
+    public void ChangeBothEyesViaIndex(int eyeIndex)
     {
-        GetComponent<Button>().onClick.AddListener(onInteraction);
-    }
-    private void onInteraction()
-    {
-        leftEye.sprite = beautifulEyes[Random.Range(0, beautifulEyes.Length)];
-        rightEye.sprite = beautifulEyes[Random.Range(0, beautifulEyes.Length)];
+        leftEye.sprite = beautifulEyes[eyeIndex];
+        rightEye.sprite = beautifulEyes[eyeIndex];
     }
 }
