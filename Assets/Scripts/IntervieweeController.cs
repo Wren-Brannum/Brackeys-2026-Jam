@@ -86,19 +86,21 @@ public class IntervieweeController : MonoBehaviour
 
             if (lyingEyesIndex != -1)
             {
-                ChangeBothEyesViaIndex(lyingEyesIndex);
+                //ChangeBothEyesViaIndex(lyingEyesIndex);
             }
         } else
         {
             SetTempStressRate(0);
         }
     }
+
     public void ChangeBothEyesViaIndex(int eyeIndex)
     {
         playEyeSFX();
         leftEye.sprite = beautifulEyes[eyeIndex];
         rightEye.sprite = beautifulEyes[eyeIndex];
     }
+
     private void playEyeSFX()
     {
         AudioManager.Instance.PlayEyeSound();
