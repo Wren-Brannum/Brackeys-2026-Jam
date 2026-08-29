@@ -11,7 +11,7 @@ public class StressManager : MonoBehaviour
 
     [SerializeField] private SpeechController _speechController;
 
-    public void ActivateResponse(string responseId, StatementType statementType)
+    public bool ActivateResponse(string responseId, StatementType statementType)
     {
         var response = _responses.FirstOrDefault(x => x.ResponseId == responseId);
 
@@ -26,16 +26,18 @@ public class StressManager : MonoBehaviour
                 _speechController.ActiveDialogue = _defaultHonestResponse;
             }
 
-            return;
+            return false;
         }
 
         if (response.Activated == true)
         {
-            return;
+            return true;
         } else
         {
             response.Activated = true;
             _speechController.ActiveDialogue = response.DialogueResponse;
+
+            return false;
         }
     }
 

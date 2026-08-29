@@ -61,10 +61,7 @@ public class SpeechController : MonoBehaviour
 
         var dialogueLine = _activeDialogue.DialogueLines[_dialogueIndex];
 
-        if (dialogueLine.AffectStress)
-        {
-            _activeInterviewee.AffectStressFromStatement(dialogueLine.StatementType);
-        }
+        _activeInterviewee.AffectStressFromStatement(dialogueLine.StatementType);
 
         _displayTextCoroutine = StartCoroutine(DisplayTextCoroutine(dialogueLine));
     }
@@ -116,15 +113,19 @@ public class SpeechController : MonoBehaviour
     {
         var dialogueLine = _activeDialogue.DialogueLines[_dialogueIndex];
 
-        if (dialogueLine.StatementType == StatementType.LIE)
-        {
-            _activeInterviewee.Accuse(true);
-        } else
-        {
-            _activeInterviewee.Accuse(false);
-        }
+        var activated = _stressManager.ActivateResponse(dialogueLine.ResponseId, dialogueLine.StatementType);
 
-        _stressManager.ActivateResponse(dialogueLine.ResponseId, dialogueLine.StatementType);
+        if (!activated)
+        {
+            if (dialogueLine.StatementType == StatementType.LIE)
+            {
+                _activeInterviewee.Accuse(true);
+            }
+            else
+            {
+                _activeInterviewee.Accuse(false);
+            }
+        }
     }
     public void setDialogue(DialogueScriptableObject dialogue)
     {
