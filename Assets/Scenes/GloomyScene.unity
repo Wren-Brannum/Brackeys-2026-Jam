@@ -221,7 +221,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 31, y: -29}
+  m_AnchoredPosition: {x: 38, y: -35}
   m_SizeDelta: {x: 570, y: 251}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &197391664
@@ -1587,6 +1587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::questionController
   questionPrefab: {fileID: 2734173918390325986, guid: 9398ed6d62512624cb31de144a4d0473, type: 3}
+  _charactersPerSecond: 20
   questionDialogue: {fileID: 11400000, guid: 97bd708ccf99fec46888c28b0b7c23b4, type: 2}
   activeSpeechController: {fileID: 627598626}
 --- !u!114 &1336994042
