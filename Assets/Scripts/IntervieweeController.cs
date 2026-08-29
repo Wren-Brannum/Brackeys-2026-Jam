@@ -28,8 +28,6 @@ public class IntervieweeController : MonoBehaviour
 
     private Animator _animator;
 
-    private Coroutine _activePoke;
-
     private void Awake()
     {
         SetHeartRate(_restingHeartRate);
