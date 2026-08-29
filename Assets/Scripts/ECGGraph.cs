@@ -11,6 +11,7 @@ public class ECGGraph : MaskableGraphic
 
     [Header("Heart")]
     [SerializeField] private float _bpm = 75f;
+    private float _pendingBpm;
 
     private float[] _values;
 
@@ -37,6 +38,8 @@ public class ECGGraph : MaskableGraphic
         }
 
         CreateHeartBeatVariation();
+
+        _pendingBpm = _bpm;
     }
 
     private void Update()
@@ -67,9 +70,18 @@ public class ECGGraph : MaskableGraphic
 
             if (_heartbeatTime >= _heartbeatDuration)
             {
-                AudioManager.Instance.PlayHeartBeatSound();
+                if (AudioManager.Instance)
+                {
+                    AudioManager.Instance.PlayHeartBeatSound();
+                }
                 _heartbeatTime -= _heartbeatDuration;
                 CreateHeartBeatVariation();
+
+                if (_pendingBpm > 0f)
+                {
+                    _bpm = _pendingBpm;
+                    _pendingBpm = 0f;
+                }
             }
         }
 
@@ -202,7 +214,7 @@ public class ECGGraph : MaskableGraphic
 
     public void SetBPM(float newBpm)
     {
-        _bpm = Mathf.Max(1f, newBpm);
+        _pendingBpm = Mathf.Max(1f, newBpm);
     }
 
     protected override void OnValidate()

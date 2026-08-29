@@ -11,6 +11,7 @@ public class BreathingGraph : MaskableGraphic
 
     [Header("Breathing")]
     [SerializeField] private float _breathsPerMinute = 12f;
+    private float _pendingBreathsPerMinute;
 
     private float[] _values;
 
@@ -29,6 +30,8 @@ public class BreathingGraph : MaskableGraphic
         {
             _values[i] = 0f;
         }
+
+        _pendingBreathsPerMinute = _breathsPerMinute;
     }
 
     private void Update()
@@ -60,17 +63,29 @@ public class BreathingGraph : MaskableGraphic
             if (_breathingTime >= _breathingDuration)
             {
                 _breathingTime -= _breathingDuration;
+
+                if (_pendingBreathsPerMinute > 0f)
+                {
+                    _breathsPerMinute = _pendingBreathsPerMinute;
+                    _pendingBreathsPerMinute = 0f;
+                }
             }
 
             // Play breathing sound at the start of each inhale
             if (_breathingTime < pixelsPerSample / _scrollSpeed)
             {
-                AudioManager.Instance.PlayInhale();
+                if (AudioManager.Instance)
+                {
+                    AudioManager.Instance.PlayInhale();
+                }
             }
             // Play breathing sound at the start of each exhale
             else if (_breathingTime >= _breathingDuration / 2f && _breathingTime < _breathingDuration / 2f + pixelsPerSample / _scrollSpeed)
             {
-                AudioManager.Instance.PlayExhale();
+                if (AudioManager.Instance)
+                {
+                    AudioManager.Instance.PlayExhale();
+                }
             }
         }
 
@@ -147,7 +162,7 @@ public class BreathingGraph : MaskableGraphic
 
     public void SetBreathsPerMinute(float newBreathsPerMinute)
     {
-        _breathsPerMinute = Mathf.Max(1f, newBreathsPerMinute);
+        _pendingBreathsPerMinute = Mathf.Max(1f, newBreathsPerMinute);
     }
 
     protected override void OnValidate()
