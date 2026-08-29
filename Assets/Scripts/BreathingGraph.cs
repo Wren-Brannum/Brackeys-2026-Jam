@@ -61,6 +61,17 @@ public class BreathingGraph : MaskableGraphic
             {
                 _breathingTime -= _breathingDuration;
             }
+
+            // Play breathing sound at the start of each inhale
+            if (_breathingTime < pixelsPerSample / _scrollSpeed)
+            {
+                AudioManager.Instance.PlayInhale();
+            }
+            // Play breathing sound at the start of each exhale
+            else if (_breathingTime >= _breathingDuration / 2f && _breathingTime < _breathingDuration / 2f + pixelsPerSample / _scrollSpeed)
+            {
+                AudioManager.Instance.PlayExhale();
+            }
         }
 
         SetVerticesDirty();
