@@ -1081,14 +1081,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 138487fde161b9a4aa795436edd219a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EyesController
-  beautifulEyes:
-  - {fileID: -8817426130257391540, guid: cca55c7b3ec063346a6b1c15e9497179, type: 3}
-  - {fileID: 3060230111996817670, guid: cca55c7b3ec063346a6b1c15e9497179, type: 3}
-  - {fileID: -7553300288962703749, guid: cca55c7b3ec063346a6b1c15e9497179, type: 3}
-  - {fileID: 6526169181366970619, guid: cca55c7b3ec063346a6b1c15e9497179, type: 3}
-  - {fileID: -4003314775230925824, guid: cca55c7b3ec063346a6b1c15e9497179, type: 3}
-  leftEye: {fileID: 1389818351}
-  rightEye: {fileID: 1348317972}
 --- !u!114 &789910688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1934,7 +1926,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1791460133031169677, guid: 5febaa5b84344294cbc184da329650c6, type: 3}
+  m_Sprite: {fileID: 8013641784890386903, guid: f7eade902642fa34bb41283af54ecd08, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2034,6 +2026,7 @@ MonoBehaviour:
   _stressOnLying: 15
   _stressChangeOnSuccessfulAccuse: 30
   _stressChangeOnFailedAccuse: 0
+  _lookStressedLevel: 60
   _heartRateGraph: {fileID: 662717568}
   _breathingGraph: {fileID: 363608243}
   lyingEyesIndex: 2

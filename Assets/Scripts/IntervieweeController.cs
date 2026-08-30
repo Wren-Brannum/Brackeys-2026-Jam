@@ -10,6 +10,7 @@ public class IntervieweeController : MonoBehaviour
     [SerializeField] private int _stressOnLying = 20;
     [SerializeField] private int _stressChangeOnSuccessfulAccuse = 30;
     [SerializeField] private int _stressChangeOnFailedAccuse = 0;
+    [SerializeField] private int _lookStressedLevel = 60;
 
     [Header("References")]
     [SerializeField] private ECGGraph _heartRateGraph;
@@ -30,9 +31,12 @@ public class IntervieweeController : MonoBehaviour
 
     private void Awake()
     {
-        SetPermStressRate(0);
+        _animator = GetComponent<Animator>();;
+    }
 
-        _animator = GetComponent<Animator>();
+    private void Start()
+    {
+        SetPermStressRate(0);
     }
 
     public void DecreaseStressRate(int stressRate)
@@ -45,7 +49,7 @@ public class IntervieweeController : MonoBehaviour
         if (success)
         {
             SetPermStressRate(Mathf.Clamp(_permStressLevel + _stressChangeOnSuccessfulAccuse, 0, 100));
-            _animator.SetTrigger("Stress");
+            _animator.SetTrigger("Anger");
         } else
         {
             SetPermStressRate(Mathf.Clamp(_permStressLevel - _stressChangeOnFailedAccuse, 0, 100));
@@ -72,10 +76,16 @@ public class IntervieweeController : MonoBehaviour
         var stressData = _stressConfig.StressData.LastOrDefault(
                 x => x.StressLevel <= _totalStressLevel);
 
-        Debug.Log(_totalStressLevel.ToString() + ": " + stressData.StressLevel);
-
         _heartRateGraph.SetBPM(stressData.HeartRate);
         _breathingGraph.SetBreathsPerMinute(stressData.BreathingRate);
+
+        if (_totalStressLevel >= _lookStressedLevel)
+        {
+            _animator.SetBool("Stressed", true);
+        } else
+        {
+            _animator.SetBool("Stressed", false);
+        }
     }
 
     public void AffectStressFromStatement(StatementType _statementType)
