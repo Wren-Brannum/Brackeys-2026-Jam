@@ -32,7 +32,7 @@ public class SpeechController : MonoBehaviour
         }
     }
 
-    private void Awake()
+    private void Start()
     {
         ActiveDialogue = _initialDialogue;
     }
