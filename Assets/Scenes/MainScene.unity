@@ -1083,7 +1083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IntervieweeController
   _stressConfig: {fileID: 11400000, guid: 818e6f72d5e9fff4fac4e46fbeae9e95, type: 2}
-  _stressOnLying: 15
+  _stressOnLying: 35
   _stressChangeOnSuccessfulAccuse: 30
   _stressChangeOnFailedAccuse: 0
   _lookStressedLevel: 60

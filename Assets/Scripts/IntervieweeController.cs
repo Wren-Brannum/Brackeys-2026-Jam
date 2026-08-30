@@ -27,6 +27,7 @@ public class IntervieweeController : MonoBehaviour
     private int _tempStressLevel;
     private int _totalStressLevel => _permStressLevel + _tempStressLevel;
 
+
     private Animator _animator;
 
     private void Awake()
@@ -113,13 +114,12 @@ public class IntervieweeController : MonoBehaviour
 
     public void ChangeBothEyesViaIndex(int eyeIndex)
     {
-        playEyeSFX();
-        leftEye.sprite = leftEyes[eyeIndex];
+        AudioManager.Instance.PlayEyeSound();        leftEye.sprite = leftEyes[eyeIndex];
         rightEye.sprite = rightEyes[eyeIndex];
     }
-
-    private void playEyeSFX()
+    
+    void Update()
     {
-        AudioManager.Instance.PlayEyeSound();
+        print($"total stress: {_totalStressLevel}");
     }
 }
