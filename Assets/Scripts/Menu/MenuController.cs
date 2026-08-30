@@ -18,7 +18,7 @@ public class MenuController : MonoBehaviour
     {
         if (_cursorTexture != null)
         {
-            Cursor.SetCursor(_cursorTexture, Vector2.zero, CursorMode.Auto);
+            //Cursor.SetCursor(_cursorTexture, Vector2.zero, CursorMode.Auto);
         }
     }
 

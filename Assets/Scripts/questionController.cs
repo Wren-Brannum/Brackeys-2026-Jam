@@ -68,7 +68,7 @@ public class questionController : MonoBehaviour
         GameObject textObj = new GameObject("QuestionText");
         RectTransform rectTransform = textObj.AddComponent<RectTransform>();
         TextMeshProUGUI tmpComponent = textObj.AddComponent<TextMeshProUGUI>();
-        tmpComponent.fontSize = 18;
+        tmpComponent.fontSize = 13;
 
         textObj.transform.SetParent(parent.transform, false);
 
