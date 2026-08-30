@@ -2,5 +2,5 @@ using UnityEngine;
 
 public class Constants
 {
-    public const float _charactersPerSecond = 20f;
+    public const float _charactersPerSecond = 10f;
 }
