@@ -21,7 +21,6 @@ public class IntervieweeController : MonoBehaviour
     public Sprite[] beautifulEyes;
     public Image leftEye;
     public Image rightEye;
-    private int fixedFrame = 0;
 
     private int _permStressLevel;
     private int _tempStressLevel;

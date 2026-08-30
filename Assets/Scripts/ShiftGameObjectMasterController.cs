@@ -25,7 +25,6 @@ public class ShiftGameObjectMasterController : MonoBehaviour
 
     public void ButtonPressed()
     {
-        print("pressed");
         if (rectTransform == null) return;
         if(!ShiftedOut)
         {
