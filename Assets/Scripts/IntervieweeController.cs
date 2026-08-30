@@ -107,7 +107,7 @@ public class IntervieweeController : MonoBehaviour
     private IEnumerator LyingEyeCycleCoroutine()
     {
         ChangeBothEyesViaIndex(lyingEyesIndex);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
         ChangeBothEyesViaIndex(0);
     }
 
