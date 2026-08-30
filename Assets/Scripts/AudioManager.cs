@@ -13,8 +13,6 @@ public class AudioManager : MonoBehaviour
     public AudioClip InhaleBreathing;
     public AudioClip ExhaleBreathing;
     public AudioClip[] TypingSounds;
-    public AudioClip BackroundMusic;
-    public AudioClip[] TalkingSounds;
 
     void Awake()
     {
@@ -65,15 +63,5 @@ public class AudioManager : MonoBehaviour
         int randomIndex = Random.Range(0, TypingSounds.Length);
         AudioClip randomTypingSound = TypingSounds[randomIndex];
         audioSource.PlayOneShot(randomTypingSound);
-    }
-    public void PlayBackRoundMusic()
-    {
-        audioSource.PlayOneShot(BackroundMusic);
-    }
-    public void PlayTalkingSounds()
-    {
-        int randomIndex = Random.Range(0, TalkingSounds.Length);
-        AudioClip randomTalkingSound = TalkingSounds[randomIndex];
-        audioSource.PlayOneShot(randomTalkingSound);
     }
 }
