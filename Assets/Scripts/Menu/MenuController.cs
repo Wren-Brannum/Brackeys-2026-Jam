@@ -12,6 +12,16 @@ public class MenuController : MonoBehaviour
     [SerializeField] private Button _startButton;
     [SerializeField] private Button _exitButton;
 
+    [SerializeField] private Texture2D _cursorTexture;
+
+    private void Start()
+    {
+        if (_cursorTexture != null)
+        {
+            Cursor.SetCursor(_cursorTexture, Vector2.zero, CursorMode.Auto);
+        }
+    }
+
     private void OnEnable()
     {
         _startButton.onClick.AddListener(OnStartButtonClicked);

@@ -285,6 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MenuController
   _startButton: {fileID: 1205354508}
   _exitButton: {fileID: 136681850}
+  _cursorTexture: {fileID: 2800000, guid: 1af2f5de477a9034d9d09a511783c027, type: 3}
 --- !u!1 &721929287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,8 +1148,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 823450809}
+  - {fileID: 510590352}
   - {fileID: 721929290}
   - {fileID: 1665512099}
-  - {fileID: 510590352}
   - {fileID: 907684725}
   - {fileID: 786863304}
