@@ -2512,7 +2512,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9c2aad6fcfaf88c448c085feaa8f3dd1, type: 3}
   - {fileID: 8300000, guid: bedb2a72b58c80e48bf858bc19a726c3, type: 3}
   - {fileID: 8300000, guid: 23feec7a364e02440beee22c7605e600, type: 3}
-  BackroundMusic: {fileID: 0}
+  BackroundMusic: {fileID: 8300000, guid: b93eb1ba98b6db14f9c0bf9fa4cdaa5c, type: 3}
 --- !u!4 &1650165536
 Transform:
   m_ObjectHideFlags: 0

@@ -16,6 +16,11 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] TalkingSounds;
     public AudioClip BackroundMusic;
 
+
+    void Start()
+    {
+        PlayBackroundMusic();
+    }
     void Awake()
     {
         if (Instance == null)
@@ -35,7 +40,6 @@ public class AudioManager : MonoBehaviour
         {
             PlayClickSound();
         }
-        PlayBackroundMusic();
     }
 
     public void PlayClickSound()
