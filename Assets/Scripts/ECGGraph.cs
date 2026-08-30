@@ -231,5 +231,5 @@ public class ECGGraph : MaskableGraphic
 
         SetVerticesDirty();
     }
-}
 #endif
+}
