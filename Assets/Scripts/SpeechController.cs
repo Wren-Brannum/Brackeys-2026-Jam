@@ -18,10 +18,7 @@ public class SpeechController : MonoBehaviour
 
     private Coroutine _displayTextCoroutine;
 
-#if UNITY_EDITOR
-    [Tooltip("Debug")]
     [SerializeField] private DialogueScriptableObject _initialDialogue;
-#endif
 
     public DialogueScriptableObject ActiveDialogue
     {
@@ -37,9 +34,7 @@ public class SpeechController : MonoBehaviour
 
     private void Awake()
     {
-#if UNITY_EDITOR
         ActiveDialogue = _initialDialogue;
-#endif
     }
 
     private void OnEnable()

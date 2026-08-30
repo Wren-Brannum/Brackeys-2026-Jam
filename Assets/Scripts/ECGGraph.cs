@@ -217,6 +217,7 @@ public class ECGGraph : MaskableGraphic
         _pendingBpm = Mathf.Max(1f, newBpm);
     }
 
+#if UNITY_EDITOR
     protected override void OnValidate()
     {
         base.OnValidate();
@@ -231,3 +232,4 @@ public class ECGGraph : MaskableGraphic
         SetVerticesDirty();
     }
 }
+#endif

@@ -165,6 +165,7 @@ public class BreathingGraph : MaskableGraphic
         _pendingBreathsPerMinute = Mathf.Max(1f, newBreathsPerMinute);
     }
 
+#if UNITY_EDITOR
     protected override void OnValidate()
     {
         base.OnValidate();
@@ -180,3 +181,4 @@ public class BreathingGraph : MaskableGraphic
         SetVerticesDirty();
     }
 }
+#endif
