@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 444.66934, y: 440.18253}
-  m_SizeDelta: {x: 570, y: 45}
+  m_SizeDelta: {x: 283, y: 45}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &7448827846507417470
 MonoBehaviour:
@@ -94,5 +94,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   questionPrefab: {fileID: 0}
+  _charactersPerSecond: 20
   questionDialogue: {fileID: 0}
   activeSpeechController: {fileID: 0}

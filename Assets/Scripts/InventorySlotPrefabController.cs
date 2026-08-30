@@ -16,7 +16,6 @@ public class InventorySlotPrefabController : MonoBehaviour
     {
         if (isEnabled)
         {
-            print("Clicked");
             QuestionText.text = Question;
         }
     }

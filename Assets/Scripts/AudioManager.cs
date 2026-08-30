@@ -32,7 +32,6 @@ public class AudioManager : MonoBehaviour
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             PlayClickSound();
-            Debug.Log("Click detected!");
         }
     }
 

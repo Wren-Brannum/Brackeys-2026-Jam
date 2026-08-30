@@ -22,7 +22,6 @@ public class TextBoxController : MonoBehaviour
         }
         isEnabled = false;
         textBox.text = string.Empty;
-        print("Interacted");
         StartCoroutine(TypeLine());
         
     }
