@@ -18,7 +18,8 @@ public class IntervieweeController : MonoBehaviour
 
     public int lyingEyesIndex = -1;
     public int eyeBlinkIndex = -1;
-    public Sprite[] beautifulEyes;
+    public Sprite[] leftEyes;
+    public Sprite[] rightEyes;
     public Image leftEye;
     public Image rightEye;
 
@@ -106,8 +107,8 @@ public class IntervieweeController : MonoBehaviour
     public void ChangeBothEyesViaIndex(int eyeIndex)
     {
         playEyeSFX();
-        leftEye.sprite = beautifulEyes[eyeIndex];
-        rightEye.sprite = beautifulEyes[eyeIndex];
+        leftEye.sprite = leftEyes[eyeIndex];
+        rightEye.sprite = rightEyes[eyeIndex];
     }
 
     private void playEyeSFX()
