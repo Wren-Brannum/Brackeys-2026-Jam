@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +7,7 @@ public class IntervieweeController : MonoBehaviour
 {
     [Header("Stress")]
     [SerializeField] private StressScriptableObject _stressConfig;
-    [SerializeField] private int _stressOnLying = 20;
+    [SerializeField] private int _stressOnLying = 50;
     [SerializeField] private int _stressChangeOnSuccessfulAccuse = 30;
     [SerializeField] private int _stressChangeOnFailedAccuse = 0;
     [SerializeField] private int _lookStressedLevel = 60;
@@ -96,12 +96,19 @@ public class IntervieweeController : MonoBehaviour
 
             if (lyingEyesIndex != -1)
             {
-                //ChangeBothEyesViaIndex(lyingEyesIndex);
+                StartCoroutine(LyingEyeCycleCoroutine());
             }
         } else
         {
             SetTempStressRate(0);
         }
+    }
+
+    private IEnumerator LyingEyeCycleCoroutine()
+    {
+        ChangeBothEyesViaIndex(lyingEyesIndex);
+        yield return new WaitForSeconds(2f);
+        ChangeBothEyesViaIndex(0);
     }
 
     public void ChangeBothEyesViaIndex(int eyeIndex)
