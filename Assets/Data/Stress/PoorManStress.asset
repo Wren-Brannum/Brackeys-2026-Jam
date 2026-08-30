@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1509c8f18712e4e4fb760c1291da5af9, type: 3}
-  m_Name: RichManStress
+  m_Name: PoorManStress
   m_EditorClassIdentifier: Assembly-CSharp::StressScriptableObject
   _stressData:
   - StressLevel: 0
