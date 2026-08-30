@@ -10,11 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fb55f912eafaf742a4b62cc26bf47a8, type: 3}
-  m_Name: Question about the wweather
+  m_Name: LieAboutJacketResponse
   m_EditorClassIdentifier: Assembly-CSharp::DialogueScriptableObject
-  _dialogueId: weatherQuestion
+  _dialogueId: LieAboutJacketResponse
   _dialogueLines:
-  - Text: 'I suppose it has been nice out lately '
+  - Text: WHAT
     StatementType: 0
-    AffectStress: 0
     ResponseId: 
+  - Text: NO
+    StatementType: 0
+    ResponseId: 
+  - Text: I SWEAR THIS HAS BEEN TORN FOR YEARS!!!
+    StatementType: 2
+    ResponseId: FinalLieAboutJacket

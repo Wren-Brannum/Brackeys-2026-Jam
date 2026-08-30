@@ -14,15 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueScriptableObject
   _dialogueId: InitialDialogue
   _dialogueLines:
-  - Text: My name is John Amigo!
+  - Text: My name is Jake Wolderhill
     StatementType: 0
-    AffectStress: 0
     ResponseId: 
   - Text: I am 46 years old.
     StatementType: 2
-    AffectStress: 1
     ResponseId: InitalLie
   - Text: What do you want?
     StatementType: 0
-    AffectStress: 0
     ResponseId: 

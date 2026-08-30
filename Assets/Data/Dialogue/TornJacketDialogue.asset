@@ -10,13 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fb55f912eafaf742a4b62cc26bf47a8, type: 3}
-  m_Name: BottleResponse
+  m_Name: TornJacketDialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueScriptableObject
-  _dialogueId: BottleResponse
+  _dialogueId: TornJacketDialogue
   _dialogueLines:
-  - Text: Yes that is mine...
+  - Text: I'm Homeless...
     StatementType: 1
     ResponseId: 
-  - Text: I drank the entire thing last night
+  - Text: Of course my jacket is torn...
+    StatementType: 1
+    ResponseId: 
+  - Text: It's been torn for years
     StatementType: 2
-    ResponseId: LieAboutDrinkingEntireBottle
+    ResponseId: LieAboutJacketResponse

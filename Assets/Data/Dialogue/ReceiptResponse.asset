@@ -10,13 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fb55f912eafaf742a4b62cc26bf47a8, type: 3}
-  m_Name: BottleResponse
+  m_Name: ReceiptResponse
   m_EditorClassIdentifier: Assembly-CSharp::DialogueScriptableObject
-  _dialogueId: BottleResponse
+  _dialogueId: ReceiptResponse
   _dialogueLines:
-  - Text: Yes that is mine...
-    StatementType: 1
-    ResponseId: 
-  - Text: I drank the entire thing last night
+  - Text: I... I never got a receipt from the cashier!
     StatementType: 2
-    ResponseId: LieAboutDrinkingEntireBottle
+    ResponseId: ReceiptLieResponse
