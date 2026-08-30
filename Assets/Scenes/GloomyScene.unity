@@ -2493,6 +2493,26 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6b8f92933a88ed644990903e2fb8b4aa, type: 3}
   - {fileID: 8300000, guid: 5e07f68dc9010a84baeb28b5d650e883, type: 3}
   - {fileID: 8300000, guid: d55e3134753cfee469fca171792a5d1a, type: 3}
+  TalkingSounds:
+  - {fileID: 8300000, guid: c01ec2e626f6e3248a9b87be5ca0a0b4, type: 3}
+  - {fileID: 8300000, guid: bcefb4bfd14709841af4a7e9b4393572, type: 3}
+  - {fileID: 8300000, guid: 3ad02229a88d2914986ba1521d932d8c, type: 3}
+  - {fileID: 8300000, guid: 9deb4af1c95eb8f4d9ddd39f43f0ce69, type: 3}
+  - {fileID: 8300000, guid: 9027c7b333f6fac4d8c39d3a1b738ba5, type: 3}
+  - {fileID: 8300000, guid: 6600ca5beb912844bba57c8b13f27fe0, type: 3}
+  - {fileID: 8300000, guid: 5a270635ae0bbb24fb6afd78dd6284ca, type: 3}
+  - {fileID: 8300000, guid: 21c5c221f180b624395536eadb01f8f7, type: 3}
+  - {fileID: 8300000, guid: 8a3463dffbe505b44a3cd27591eb7b7c, type: 3}
+  - {fileID: 8300000, guid: b786d790fcda57642b8bc2e24cd1da75, type: 3}
+  - {fileID: 8300000, guid: a803b4793ba78014b892c8f38df1a027, type: 3}
+  - {fileID: 8300000, guid: a93ac1d2bd3ad2a4d89181884d6a9455, type: 3}
+  - {fileID: 8300000, guid: 99e4769cb5114ae4a8ec5a7f1d3907ed, type: 3}
+  - {fileID: 8300000, guid: da2d1296867a0174a8c9fc805a7f9658, type: 3}
+  - {fileID: 8300000, guid: d74c79c9486aecb4894cc51c55a69c15, type: 3}
+  - {fileID: 8300000, guid: 9c2aad6fcfaf88c448c085feaa8f3dd1, type: 3}
+  - {fileID: 8300000, guid: bedb2a72b58c80e48bf858bc19a726c3, type: 3}
+  - {fileID: 8300000, guid: 23feec7a364e02440beee22c7605e600, type: 3}
+  BackroundMusic: {fileID: 0}
 --- !u!4 &1650165536
 Transform:
   m_ObjectHideFlags: 0
