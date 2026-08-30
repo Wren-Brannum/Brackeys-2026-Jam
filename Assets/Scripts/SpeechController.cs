@@ -69,7 +69,7 @@ public class SpeechController : MonoBehaviour
         foreach (char character in dialogueLine.Text)
         {
             _text.text += character;
-            AudioManager.Instance.PlayRandomTypingSound();
+            AudioManager.Instance.PlayTalkingSounds();
             yield return new WaitForSeconds(1f / _charactersPerSecond);
         }
 
